@@ -21,9 +21,9 @@ router.post('/register', async (req, res) => {
     await user.save();
 
     const payload = { userId: user._id };
-    const token = jwt.sign(payload, ProcessingInstruction.env.JWT_SECRET, { expiresIn: '1h' });
+    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.cookie('token', token, { httpOnly: true });
+    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
     res.status(201).json({ msg: 'Usuario creado correctamente' });
   } catch (err) {
     res.status(500).json({ msg: 'Error al crear el usuario' });

@@ -5,7 +5,7 @@ const User = require('../models/User');
 const router = express.Router();
 
 // LOGIN
-router.post('/', async (req, res) => {
+router.post('/login', async (req, res) => {
 
   const { username, password } = req.body;
 
@@ -19,7 +19,7 @@ router.post('/', async (req, res) => {
     const payload = { userId: user._id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.cookie('token', token, { httpOnly: true });
+    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
     res.status(200).json({ msg: 'Usuario conectado correctamente' });
   } catch (err) {
     res.status(500).json({ msg: 'Error al conectar con el servidor' });
