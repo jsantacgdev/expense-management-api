@@ -23,7 +23,7 @@ router.post('/register', async (req, res) => {
     const payload = { userId: user._id };
     const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
 
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
+    res.cookie('Cash-Token', token, { httpOnly: true, maxAge: 3600000 });
     res.status(201).json({ msg: 'Usuario creado correctamente' });
   } catch (err) {
     res.status(500).json({ msg: 'Error al crear el usuario' });
