@@ -1,8 +1,8 @@
 const express = require('express');
 const bcrypt = require('bcryptjs');
-const jwt = require('jsonwebtoken');
 const User = require('../models/User');
 const router = express.Router();
+const generateAccessToken = require('../utils/TokenUtils');
 
 // LOGIN
 router.post('/login', async (req, res) => {
@@ -16,11 +16,10 @@ router.post('/login', async (req, res) => {
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) return res.status(400).json({ msg: 'Contraseña incorrecta' });
 
-    const payload = { userId: user._id };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    
+    const accessToken = generateAccessToken(user);
 
-    res.cookie('token', token, { httpOnly: true, maxAge: 3600000 });
-    res.status(200).json({ msg: 'Usuario conectado correctamente' });
+    res.status(200).json({ msg: 'Usuario conectado correctamente', accessToken: accessToken });
   } catch (err) {
     res.status(500).json({ msg: 'Error al conectar con el servidor' });
     console.log(err);
