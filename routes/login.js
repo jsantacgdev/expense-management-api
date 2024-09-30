@@ -19,7 +19,7 @@ router.post('/login', async (req, res) => {
     
     const accessToken = generateAccessToken(user);
 
-    res.status(200).json({ msg: 'Usuario conectado correctamente', accessToken: accessToken });
+    res.status(200).json({ msg: 'Usuario conectado correctamente', accessToken: accessToken, username: user.username, name: `${user.name} ${user.lastname}`});
   } catch (err) {
     res.status(500).json({ msg: 'Error al conectar con el servidor' });
     console.log(err);
