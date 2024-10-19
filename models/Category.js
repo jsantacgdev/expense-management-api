@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const CategorySchema = new mongoose.Schema({
+const CategoriaSchema = new mongoose.Schema({
   codigo: {
     type: String,
     required: true,
@@ -12,9 +12,9 @@ const CategorySchema = new mongoose.Schema({
   },
 });
 
-CategorySchema.pre('save', async function (next) {
+CategoriaSchema.pre('save', async function (next) {
   this.categoryName = this.categoryName.toUpperCase();
   next();
 });
 
-module.exports = mongoose.model('Category', CategorySchema);
+module.exports = mongoose.model('Categoria', CategoriaSchema);
