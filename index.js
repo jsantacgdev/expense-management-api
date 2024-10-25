@@ -24,6 +24,7 @@ app.use('/api/auth', require('./routes/login'));
 app.use('/api/auth', require('./routes/auth'));
 app.use('/api/common', require('./routes/category'));
 app.use('/api/common', require('./routes/expense_type'));
+app.use('/api/common', require('./routes/expense'));
 
 // Iniciar servidor
 app.listen(PORT, () => {
