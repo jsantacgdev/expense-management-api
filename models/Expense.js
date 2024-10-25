@@ -13,12 +13,19 @@ const GastoSchema = new mongoose.Schema({
     type: Date,
     required: true,
   },
+  tipo_gasto: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Tipo_Gasto',
+    required: true,
+  },
   categoria: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Categoria',
     required: true,
   },
   usuario: {
-    type: String,
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
     required: true,
   }
 },
