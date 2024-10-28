@@ -5,8 +5,8 @@ const router = express.Router();
 router.post('/expenses', async (req, res) => {
   try {
     
-    const usuarioId = req.body.user; 
-    console.log(usuarioId);
+    const usuarioId = req.body.user;
+    
     let expenses = await Expense.find({ usuario: usuarioId });
     if (!expenses) return res.status(404).json({ msg: 'No existen gastos aun' });
     
