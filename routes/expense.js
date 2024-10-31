@@ -17,8 +17,8 @@ router.post('/expenses', async (req, res) => {
       nombre_gasto: doc.nombre_gasto,
       cantidad: doc.cantidad,
       fecha_gasto: doc.fecha_gasto,
-      categoria: doc.categoria,
       tipo_gasto: doc.tipo_gasto,
+      categoria: doc.categoria,
       usuario: doc.usuario,
     }));
 
